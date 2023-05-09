@@ -1,0 +1,20 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css");
+
+/*navbar css*/
+.navbar {
+  width: 100%;
+  height: 87px;
+  background-color: beige;
+}
+
+.logo-anchor {
+  margin-left: 10%;
+  height: 100%;
+  width: 20%;
+}
+
+.shopping-cart {
+  margin-right: 10%;
+  height: 100%;
+  width: 10%;
+}
