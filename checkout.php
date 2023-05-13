@@ -19,7 +19,7 @@
         </button>
     </nav>
    
-    <form>
+    <form style="width: 50%; margin-left: 33%;">
   <div class="form-group">
     <label>Email Address</label>
     <input type="email" class="form-control" id="checkoutEmail" placeholder="Enter your email">
