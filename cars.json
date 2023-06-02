@@ -5,7 +5,7 @@
     "Description": "The Mitsubishi Pigeonero is at the apex of what it feels like to drive a modern car. Equipped with custom headlights and a beautiful aerodynamic design, the Pigeonero is built to travel long distances with economically viable prices.",
     "Fuel": "Seeds",
     "Price": "49.99",
-    "Image": "Placeholder",
+    "Image": "imgs/mitsubishi_pigeonero.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -15,7 +15,7 @@
     "Description": "Originally compact in size, the Camry has grown since the 1990s to fit the mid-size classification — although the two widths co-existed in that decade. Since the release of the wide-bodied versions, Camry has been extolled by Toyota as the firms seco",
     "Fuel": "Petrol",
     "Price": "199.99",
-    "Image": "Placeholder",
+    "Image": "imgs/ToyotaCamry.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -25,7 +25,7 @@
     "Description": "Marketed in three-door and five-door hatchback, van, and estate forms, the Golf Mk7 shares the MQB platform with the third-generation Audi A3, SEAT León and Škoda Octavia.",
     "Fuel": "Diesel",
     "Price": "299.99",
-    "Image": "Placeholder",
+    "Image": "imgs/VolkswagenGolfVII.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -35,7 +35,7 @@
     "Description": "The MPV was designed from the ground-up as a minivan specifically for the American market, and was introduced in 1988 for the 1989 model year. It was based on the large rear-wheel-drive Mazda Luces platform. The platform allowed such options as a V6 ",
     "Fuel": "Petrol",
     "Price": "109.99",
-    "Image": "Placeholder",
+    "Image": "imgs/MazdaMPV.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -45,7 +45,7 @@
     "Description": "The Nissan Leaf, stylized as LEAF, is a battery-electric powered compact car manufactured by Nissan. The Leafs range on a full charge has been increased gradually from 117 km (73 miles) to 364 km (226 miles), due to the use of a larger battery pack a",
     "Fuel": "Electricity",
     "Price": "399.99",
-    "Image": "Placeholder",
+    "Image": "imgs/NissanLeaf.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -55,7 +55,7 @@
     "Description": "The Ford Mustang is a sporty and iconic American muscle car thats often associated with fun and adventure. Its a popular choice for travelers who want to experience the thrill of driving a high-performance vehicle.",
     "Fuel": "Petrol",
     "Price": "199.99",
-    "Image": "Placeholder",
+    "Image": "imgs/FordMustang.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -65,7 +65,7 @@
     "Description": "The Himalayan Moose has been a classic vehicle used by those that live near the mountainous regions to the north. For a limited time, Hertz UTS is offering this once in a lifetime experience to adventurous travelers.",
     "Fuel": "Leaves",
     "Price": "599.99",
-    "Image": "Placeholder",
+    "Image": "imgs/52kgHimalayanCar.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -75,7 +75,7 @@
     "Description": "The Jeep Wrangler is a rugged and capable SUV thats perfect for adventure seekers who want to explore off-road trails and remote destinations. Its also a popular choice for travelers who want to experience the thrill of open-air driving.",
     "Fuel": "Petrol",
     "Price": "99.99",
-    "Image": "Placeholder",
+    "Image": "imgs/JeepWrangler.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -85,7 +85,7 @@
     "Description": "The Audi Q7 TDI is a large and luxurious SUV that is powered by a diesel engine that delivers impressive torque and fuel efficiency. Its a popular choice for families or groups of travelers who need plenty of space for passengers and luggage while al",
     "Fuel": "Diesel",
     "Price": "249.99",
-    "Image": "Placeholder",
+    "Image": "imgs/AudiTDI.png",
     "Rental_Days": "0",
     "Rented": "0"
   },
@@ -95,7 +95,7 @@
     "Description": "The Fairlady Z33 is a sporty and stylish two-door coupe that offers impressive performance and a thrilling driving experience. With its sleek and aerodynamic design, powerful engine, and responsive handling, the Fairlady Z33 is the perfect car for an",
     "Fuel": "Petrol",
     "Price": "999.99",
-    "Image": "Placeholder",
+    "Image": "imgs/NissanFairlady.png",
     "Rental_Days": "0",
     "Rented": "0"
   }

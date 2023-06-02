@@ -8,7 +8,7 @@
 }
 
 .logo-anchor {
-  margin-left: 10%;
+  margin-left: 5%;
   height: 100%;
   width: 20%;
 }
@@ -24,56 +24,95 @@
   margin-bottom: 1%;
 }
 
-/*shopping cart */
-
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 77%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 10;
-  background-color: white;
-  width: 500px;
-  height: 100%;
-  max-width: 80%;
+.logo-img {
+  width: 160px;
+  height: 75px;
+  margin-top: none;
 }
 
-.modal.active {
-  transform: translate(-30%, -50%) scale(1);
+.shopping-cart-img {
+  width: 50px;
+  height: 50px;
+}
+
+/*shopping cart */
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.modal {
+  width: 33%;
+  left: 67%;
+  height: 100vw;
+  overflow: scroll;
+}
+
+.modal-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100vw;
 }
 
 .modal-header {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
-  height: 86px;
-  background-color: #8de6e1;
-}
-
-.modal-header .title {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.modal-header .close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  font-weight: bold;
+  height: 87px;
+  background-color: beige;
 }
 
 .modal-body {
-  padding: 10px 15px;
+  height: auto;
 }
 
-#overlay.active {
-  opacity: 1;
-  pointer-events: all;
+.modal-footer {
+  height: 15%;
+}
+
+.cart-column {
+  margin-right: 20%;
+  margin-bottom: 10%;
+}
+
+.cart-row {
+  display: flex;
+  margin: 0.5rem;
+  gap: 0.5rem;
+}
+
+.cart-instance {
+  margin: 0.5rem 1rem;
+  text-align: center;
+}
+
+.cart-item {
+  width: 45%;
+}
+
+.cart-price {
+  width: 20%;
+}
+
+.cart-quantity {
+  width: 25%;
+}
+
+.cart-quantity-input {
+  display: flex;
+}
+
+.cart-price-instance {
+  left: 50%;
+}
+
+.btn-instance {
+  left: 70%;
+}
+
+.checkout-button {
+  margin-left: 20%;
+}
+
+.clear-cart-button {
+  margin-left: 20%;
 }
