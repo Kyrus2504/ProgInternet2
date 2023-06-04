@@ -98,7 +98,7 @@
 }
 
 .cart-quantity-input {
-  display: flex;
+  width: 100px;
 }
 
 .cart-price-instance {
@@ -114,5 +114,5 @@
 }
 
 .clear-cart-button {
-  margin-left: 20%;
+  margin-left: 10%;
 }

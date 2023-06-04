@@ -8,45 +8,6 @@ if (document.readyState == "loading") {
   ready();
 }
 
-async function getData(file, callback) {
-  var dataSrc = new XMLHttpRequest();
-  dataSrc.overrideMimeType("application/json");
-  dataSrc.open("GET", file, true);
-  dataSrc.onreadystatechange = function () {
-    if (dataSrc.readyState === 4 && dataSrc.status == "200") {
-      callback(dataSrc.responseText);
-    }
-  };
-  dataSrc.send(null);
-}
-
-//usage:
-
-function indexReady() {
-  getData("cars.json", function (text) {
-    var data = JSON.parse(text);
-    console.log(data);
-    for (x = 0; x < data.length; x++) {
-      var cardRow = document.createElement("div");
-      var cardItems = document.getElementsByClassName("card-instance")[0];
-      var cardRowContents = `
-    
-    <div class="card card-instance col mb-4" style="width: 33rem; height: 20rem; margin-left: 10%; margin-top: 3%;">
-    <img class="card-img-top" src="${data[x].Image}" alt="${data[x].Name} Car Image" style="width: 160px; height: 90px; margin-left: 33%;"></img>
-    <div class="card-body">
-    <h5 class="card-title">${data[x].Name}</h5>
-    <p class="card-description">${data[x].Description}</p>
-    <p class="card-price" style="display: inline; margin-right: 25%; margin-top: 10%;">$${data[x].Price}</p>
-    <input type="submit" value="Add to Cart" class="add-item-button"></input>
-  </div>
-</div>
-`;
-      cardRow.innerHTML = cardRowContents;
-      cardItems.append(cardRow);
-    }
-  });
-}
-
 //Shopping Cart & Add to Cart functions
 
 function ready() {
@@ -63,7 +24,9 @@ function ready() {
   var addToCartButtons = document.getElementsByClassName("add-item-button");
   for (var i = 0; i < addToCartButtons.length; i++) {
     var button = addToCartButtons[i];
-    button.addEventListener("click", addToCartClicked);
+    button.addEventListener("click", function () {
+      addToCartClicked;
+    });
   }
   console.log(addToCartButtons);
 
@@ -74,8 +37,8 @@ function ready() {
   }
 
   console.log("Ready complete");
-  //checkout button, couldnt get to work
 
+  //checkout button, couldnt get to work
   /*var addToCartButtons = document.getElementsByClassName("submit-order");
   for (var i = 0; i < addToCartButtons.length; i++) {
     var button = addToCartButtons[i];
@@ -104,7 +67,8 @@ function removeCartContent() {
 
 function addToCartClicked(event) {
   console.log("Add to cart clicked");
-  var button = event.target;
+  var button = event;
+  console.log(button);
   var Item = button.parentElement.parentElement;
   var title = Item.getElementsByClassName("card-title")[0].innerText;
   console.log(title);
@@ -120,10 +84,17 @@ function addToCartClicked(event) {
 
 function changeQuantities(event) {
   console.log("Change Quantities reached");
-  var input = event.target;
+  var input = event;
   if (isNaN(input.value) || input.value <= 0) {
     input.value = 1;
+  } else {
+    input.value = event.value;
   }
+  //Grab the value of parent cart row
+  //save values to variables
+  //remove cart row
+  //change quantity to new quantity and add new cart row
+  //Quantity is changed
   updateCartTotal();
 }
 
@@ -150,7 +121,7 @@ function addItemToCart(title, price, image, quantity) {
     </div>
     <span class="cart-price cart-price-instance cart-column">${price}</span>
     <div class="cart-quantity cart-column">
-      <input class="cart-quantity-input" type="number" value="${quantity}">
+      <input class="cart-quantity-input" type="number" value="${quantity}" oninput="changeQuantities(this)">
       <button style="display: flex;" class="btn btn-danger btn-instance" type="button">REMOVE</button>
     </div>
   </div>
@@ -183,6 +154,45 @@ function updateCartTotal() {
   console.log(total);
   document.getElementsByClassName("cart-total-price")[0].innerText =
     "$" + total;
+}
+
+async function getData(file, callback) {
+  var dataSrc = new XMLHttpRequest();
+  dataSrc.overrideMimeType("application/json");
+  dataSrc.open("GET", file, true);
+  dataSrc.onreadystatechange = function () {
+    if (dataSrc.readyState === 4 && dataSrc.status == "200") {
+      callback(dataSrc.responseText);
+    }
+  };
+  dataSrc.send(null);
+}
+
+//usage:
+
+function indexReady() {
+  getData("cars.json", function (text) {
+    var data = JSON.parse(text);
+    console.log(data);
+    for (x = 0; x < data.length; x++) {
+      var cardRow = document.createElement("div");
+      var cardItems = document.getElementsByClassName("card-instance")[0];
+      var cardRowContents = `
+    
+    <div class="card card-instance col mb-4" style="width: 33rem; height: 20rem; margin-left: 10%; margin-top: 3%;">
+    <img class="card-img-top" src="${data[x].Image}" alt="${data[x].Name} Car Image" style="width: 160px; height: 90px; margin-left: 33%;"></img>
+    <div class="card-body">
+    <h5 class="card-title">${data[x].Name}</h5>
+    <p class="card-description">${data[x].Description}</p>
+    <p class="card-price" style="display: inline; margin-right: 25%; margin-top: 10%;">$${data[x].Price}</p>
+    <input type="submit" value="Add to Cart" onclick="addToCartClicked(this)" class="add-item-button"></input>
+  </div>
+</div>
+`;
+      cardRow.innerHTML = cardRowContents;
+      cardItems.append(cardRow);
+    }
+  });
 }
 
 //shopping cart
