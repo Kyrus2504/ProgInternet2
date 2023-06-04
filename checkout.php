@@ -13,7 +13,7 @@
   <script type="text/javascript" src="cars.json"></script>
 </head>
 
-<body>
+<body onload="sessionRefresh(), orderTotal()">
 
   <nav class="navbar">
     <a class="logo-anchor" href="index.php">
@@ -21,38 +21,44 @@
     </a>
 
     <button class="shopping-cart btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <img class="shopping-cart-img" src="imgs/shoppingCart.jpg" alt="Shopping Cart"></img>
+      <img class="shopping-cart-img" src="imgs/shoppingCart.png" alt="Shopping Cart"></img>
     </button>
 
 
   </nav>
 
-  <form style="width: 50%; margin-left: 33%;">
+  <form name="submitForm" onsubmit="thankYouMessage()" style="width: 50%; margin-left: 33%;">
     <div class="form-group">
       <label>Email Address</label>
-      <input type="email" class="form-control" id="checkoutEmail" placeholder="Enter your email">
+      <input type="email" required class="form-control" id="checkoutEmail" placeholder="Enter your email">
+    </div>
+    <div class="form-group">
+      <label>Start Rental Date</label>
+      <input type="date" name="rentalDate" required class="form-control" id="rentalDate" placeholder="Enter the date you would like to start renting from">
     </div>
     <div class="form-group">
       <label>Debit Card Holder Name</label>
-      <input type="text" class="form-control" id="cardName" placeholder="Enter your name">
+      <input type="text" name="holderName" required class="form-control" id="cardName" placeholder="Enter your name">
       <small>PLEASE DO NOT PUT LEGITIMATE INFORMATION HERE</small>
     </div>
     <div class="form-group">
       <label>Debit Card Number</label>
-      <input type="number" class="form-control" id="cardNumber" placeholder="Enter your card number">
+      <input type="number" required class="form-control" id="cardNumber" placeholder="Enter your card number">
       <small>PLEASE DO NOT PUT LEGITIMATE INFORMATION HERE</small>
     </div>
     <div class="form-group">
       <label>Debit Card Expiry</label>
-      <input type="date" class="form-control" id="cardExpiry" placeholder="Enter your card expiry">
+      <input type="date" required class="form-control" id="cardExpiry" placeholder="Enter your card expiry">
       <small>PLEASE DO NOT PUT LEGITIMATE INFORMATION HERE</small>
     </div>
     <div class="form-group">
       <label>Debit Card CVV</label>
-      <input type="number" class="form-control" id="cardCVV" placeholder="Enter your card CVV">
+      <input type="number" required class="form-control" id="cardCVV" placeholder="Enter your card CVV">
       <small>PLEASE DO NOT PUT LEGITIMATE INFORMATION HERE</small>
     </div>
-    <button type="submit" class="orderButton">Submit</button>
+    </div>
+    <span class="order-total"> Your total is $0 </span>
+    <input type="submit" class="orderButton" value="Order"></input>
   </form>
 
 

@@ -8,6 +8,7 @@ if (document.readyState == "loading") {
   ready();
 }
 
+var cartObjects = [];
 //Shopping Cart & Add to Cart functions
 
 function ready() {
@@ -53,6 +54,11 @@ function removeCartItem(event) {
     .getElementsByClassName("cart-item")[0]
     .getElementsByClassName("cart-item-title")[0].textContent;
   sessionStorage.removeItem(sessionTitle);
+  cartObjects.splice(
+    cartObjects.findIndex((x) => x.name === sessionTitle),
+    1
+  );
+  console.log(cartObjects);
   console.log(sessionStorage);
   removeButton.parentElement.parentElement.remove();
   console.log("pre remove button update cart reached");
@@ -69,6 +75,7 @@ function removeCartContent() {
 </div>`;
   sessionStorage.clear();
   console.log(sessionStorage);
+  cartObjects = [];
   updateCartTotal();
 }
 
@@ -85,9 +92,19 @@ function addToCartClicked(event) {
   console.log(image);
   quantity = 1;
   addItemToCart(title, price, image, quantity);
-  sessionStorage.setItem(title, [title, price, image, quantity]);
+  var sessionObj = {
+    title: title,
+    price: price,
+    image: image,
+    quantity: quantity,
+  };
+  var sessionObjString = JSON.stringify(sessionObj);
+  console.log(sessionObjString);
+  sessionStorage.setItem(title, sessionObjString);
   console.log(sessionStorage.getItem(title));
-  console.log("Reached pre update cart");
+  console.log(JSON.parse(sessionStorage.getItem(title)));
+  cartObjects.push({ name: title });
+  console.log(cartObjects);
   updateCartTotal();
 }
 
@@ -96,6 +113,8 @@ function changeQuantities(event) {
   var input = event;
   if (isNaN(input.value) || input.value <= 0) {
     input.value = 1;
+  } else if (input.value >= 365) {
+    input.value = 365;
   } else {
     input.value = event.value;
   }
@@ -109,13 +128,14 @@ function changeQuantities(event) {
   var sessionPrice = event.parentElement.parentElement.getElementsByClassName(
     "cart-price-instance"
   )[0].textContent;
-  console.log(sessionPrice);
-  sessionStorage.setItem(sessionTitle, [
-    sessionTitle,
-    sessionPrice,
-    sessionImage,
-    event.value,
-  ]);
+  var sessionObj = {
+    title: sessionTitle,
+    price: sessionPrice,
+    image: sessionImage,
+    quantity: input.value,
+  };
+  sessionObjString = JSON.stringify(sessionObj);
+  sessionStorage.setItem(sessionTitle, sessionObjString);
   console.log(sessionStorage.getItem(sessionTitle));
   updateCartTotal();
 }
@@ -155,6 +175,25 @@ function addItemToCart(title, price, image, quantity) {
     .addEventListener("click", removeCartItem);
 }
 
+function sessionRefresh() {
+  if (sessionStorage.length == 0) {
+    return;
+  }
+  console.log(sessionStorage.length);
+
+  for (var x = 0; x < sessionStorage.length; x++) {
+    console.log(sessionStorage.getItem(sessionStorage.key(x)));
+    var cartRow = JSON.parse(sessionStorage.getItem(sessionStorage.key(x)));
+    var cartTitle = cartRow.title;
+    var cartPrice = cartRow.price;
+    var cartImage = cartRow.image;
+    var cartQuantity = cartRow.quantity;
+    addItemToCart(cartTitle, cartPrice, cartImage, cartQuantity);
+    updateCartTotal();
+  }
+  console.log(sessionStorage);
+}
+
 function updateCartTotal() {
   console.log("reached update cart");
   var cartItemContainer = document.getElementsByClassName("cart-body")[0];
@@ -176,6 +215,35 @@ function updateCartTotal() {
   console.log(total);
   document.getElementsByClassName("cart-total-price")[0].innerText =
     "$" + total;
+}
+
+function orderTotal() {
+  var cartItemContainer = document.getElementsByClassName("cart-total")[0];
+  console.log(cartItemContainer);
+  var cartTotalPrice =
+    cartItemContainer.getElementsByClassName("cart-total-price")[0];
+  console.log(cartTotalPrice);
+  var actualPrice = parseFloat(cartTotalPrice.innerText.replace("$", ""));
+  document.getElementsByClassName("order-total")[0].innerText =
+    "Your order total is $" + actualPrice;
+}
+
+function thankYouMessage() {
+  var name = document.getElementById("holderName");
+  console.log(name);
+  var date = document.getElementById("rentalDate");
+  console.log(date);
+  var total = document.getElementsByClassName("order-total")[0].innerText;
+  var actualTotal = total.replace("Your order total is ", "");
+  console.log(total);
+  alert(
+    "Thank you for renting with Hertz UTS. Your order has been placed, costing " +
+      actualTotal +
+      "."
+  );
+  removeCartContent();
+  sessionStorage.clear();
+  console.log("alerted");
 }
 
 async function getData(file, callback) {

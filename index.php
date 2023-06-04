@@ -19,14 +19,14 @@ session_start();
 </head>
 
 
-<body onload="indexReady()">
+<body onload="indexReady(), sessionRefresh()">
   <nav class="navbar">
     <a class="logo-anchor" href="index.php">
       <img class="logo-img" src="imgs/Hertz UTS.png" alt="Hertz UTS Logo"></img>
     </a>
 
     <button class="shopping-cart btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <img class="shopping-cart-img" src="imgs/shoppingCart.jpg" alt="Shopping Cart"></img>
+      <img class="shopping-cart-img" src="imgs/shoppingCart.png" alt="Shopping Cart"></img>
     </button>
 
 
