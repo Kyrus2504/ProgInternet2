@@ -49,6 +49,11 @@ function ready() {
 
 function removeCartItem(event) {
   var removeButton = event.target;
+  var sessionTitle = removeButton.parentElement.parentElement
+    .getElementsByClassName("cart-item")[0]
+    .getElementsByClassName("cart-item-title")[0].textContent;
+  sessionStorage.removeItem(sessionTitle);
+  console.log(sessionStorage);
   removeButton.parentElement.parentElement.remove();
   console.log("pre remove button update cart reached");
   updateCartTotal();
@@ -62,6 +67,8 @@ function removeCartContent() {
   <span class="cart-quantity cart-header cart-column">Rent Days</span>
 </div>
 </div>`;
+  sessionStorage.clear();
+  console.log(sessionStorage);
   updateCartTotal();
 }
 
@@ -78,6 +85,8 @@ function addToCartClicked(event) {
   console.log(image);
   quantity = 1;
   addItemToCart(title, price, image, quantity);
+  sessionStorage.setItem(title, [title, price, image, quantity]);
+  console.log(sessionStorage.getItem(title));
   console.log("Reached pre update cart");
   updateCartTotal();
 }
@@ -90,11 +99,24 @@ function changeQuantities(event) {
   } else {
     input.value = event.value;
   }
-  //Grab the value of parent cart row
-  //save values to variables
-  //remove cart row
-  //change quantity to new quantity and add new cart row
-  //Quantity is changed
+  //session storage bit
+  var sessionTitle = event.parentElement.parentElement
+    .getElementsByClassName("cart-item")[0]
+    .getElementsByClassName("cart-item-title")[0].textContent;
+  var sessionImage = event.parentElement.parentElement
+    .getElementsByClassName("cart-item")[0]
+    .getElementsByClassName("cart-item-image")[0].src;
+  var sessionPrice = event.parentElement.parentElement.getElementsByClassName(
+    "cart-price-instance"
+  )[0].textContent;
+  console.log(sessionPrice);
+  sessionStorage.setItem(sessionTitle, [
+    sessionTitle,
+    sessionPrice,
+    sessionImage,
+    event.value,
+  ]);
+  console.log(sessionStorage.getItem(sessionTitle));
   updateCartTotal();
 }
 
@@ -117,9 +139,9 @@ function addItemToCart(title, price, image, quantity) {
   <div class="cart-row">
     <div class="cart-item cart-column">
       <img class="cart-item-image" src="${image}" width="50" height="50">
-      <span class="cart-item-title">${title}</span>
+      <span class="cart-item-title" value="${title}">${title}</span>
     </div>
-    <span class="cart-price cart-price-instance cart-column">${price}</span>
+    <span class="cart-price cart-price-instance cart-column" value="${price}">${price}</span>
     <div class="cart-quantity cart-column">
       <input class="cart-quantity-input" type="number" value="${quantity}" oninput="changeQuantities(this)">
       <button style="display: flex;" class="btn btn-danger btn-instance" type="button">REMOVE</button>
